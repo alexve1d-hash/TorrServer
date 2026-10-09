@@ -17,8 +17,8 @@ import AddFirstTorrent from './AddFirstTorrent'
 
 function FilterIcon(props) {
   return (
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" {...props}>
-      <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" />
+    <svg viewBox='0 0 24 24' width='24' height='24' fill='currentColor' {...props}>
+      <path d='M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z' />
     </svg>
   )
 }
@@ -84,7 +84,7 @@ export default function TorrentList({ isOffline, isLoading, sortABC, torrents, s
     setIsDialogOpen(false)
   }
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = e => {
     if (e.key === 'Enter') {
       e.preventDefault()
       handleApplyFilter()
@@ -93,48 +93,49 @@ export default function TorrentList({ isOffline, isLoading, sortABC, torrents, s
 
   return (
     <TorrentListWrapper>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '10px', gap: '8px' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          marginBottom: '10px',
+          gap: '8px',
+        }}
+      >
         <Tooltip title={t('FilterByName') || 'Фильтр по имени'}>
-          <IconButton
-            color={filterQuery ? 'secondary' : 'default'}
-            onClick={handleOpenDialog}
-          >
+          <IconButton color={filterQuery ? 'secondary' : 'default'} onClick={handleOpenDialog}>
             <FilterIcon />
           </IconButton>
         </Tooltip>
         {filterQuery && (
-          <Button
-            size="small"
-            variant="outlined"
-            onClick={handleClearFilter}
-          >
+          <Button size='small' variant='outlined' onClick={handleClearFilter}>
             {t('Clear') || 'Очистить'}: {filterQuery} ✕
           </Button>
         )}
       </div>
 
-      <Dialog open={isDialogOpen} onClose={handleCloseDialog} fullWidth maxWidth="xs">
+      <Dialog open={isDialogOpen} onClose={handleCloseDialog} fullWidth maxWidth='xs'>
         <DialogTitle>{t('FilterTitle') || 'Фильтрация по имени'}</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
-            margin="dense"
+            margin='dense'
             label={t('EnterTorrentName') || 'Введите часть названия торрента'}
-            type="text"
+            type='text'
             fullWidth
             value={tempQuery}
-            onChange={(e) => setTempQuery(e.target.value)}
+            onChange={e => setTempQuery(e.target.value)}
             onKeyDown={handleKeyDown}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClearFilter} color="default">
+          <Button onClick={handleClearFilter} color='default'>
             {t('Clear') || 'Очистить'}
           </Button>
-          <Button onClick={handleCloseDialog} color="default">
+          <Button onClick={handleCloseDialog} color='default'>
             {t('Cancel') || 'Отмена'}
           </Button>
-          <Button onClick={handleApplyFilter} color="primary" variant="contained">
+          <Button onClick={handleApplyFilter} color='primary' variant='contained'>
             {t('OK') || 'OK'}
           </Button>
         </DialogActions>
